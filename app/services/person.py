@@ -1,6 +1,6 @@
 from app.models import Person
 
-"""Business logic module for Person endpoint"""
+"""Business logic for Person endpoint"""
 
 
 def get_person(person_index):

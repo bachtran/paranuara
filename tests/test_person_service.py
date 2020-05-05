@@ -26,6 +26,20 @@ class PersonTestCase(unittest.TestCase):
         ]
         self.assertEqual(person_service.filter_person(people_input), expected)
 
+    def test_get_common_friends(self):
+        person1 = Person(index=0, has_died=False, eye_color='black')
+        person2 = Person(index=1, has_died=True, eye_color='black')
+        friend1 = Person(index=2, has_died=False, eye_color='blue')
+        friend2 = Person(index=3, has_died=False, eye_color='brown')
+        person1.befriend(friend1)
+        person1.befriend(friend2)
+        person2.befriend(friend1)
+
+        common_friends = person_service.get_common_friends(person1, person2)
+        self.assertEqual(len(common_friends), 1)
+        self.assertIn(friend1, common_friends)
+        self.assertNotIn(friend2, common_friends)
+
 
 if __name__ == '__main__':
     unittest.main()
