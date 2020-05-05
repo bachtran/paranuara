@@ -49,7 +49,7 @@ an external API for instance.
 From the lowest level, there are:
 - A database abstraction layer built using SQLAlchemy (`app.models`).
 - A service layer that contains business logic and relies on the database layer (`app.services`).
-- A controller/view layer built with Flask Blueprint (`app.api`). As the view portion is minimal in this case, I choose to have it
+- A controller/view layer built with Flask Blueprint (`app.api`). As the view portion is quite simple in this case, I choose to have it
 together with the controller instead of separately.
 ### Tests
 - In the `tests` directory. Which could be run with `flask test` after `export FLASK_APP=paranuara.py`.
