@@ -5,4 +5,8 @@ from app.models import Company
 
 def get_company(company_id):
     """Get a company object given an index"""
-    return Company.query.filter_by(index=company_id).first()
+    try:
+        company = Company.query.filter_by(index=company_id).first()
+        return company
+    except Exception as e:
+        raise e

@@ -8,24 +8,29 @@ from app.services import company as company_service
 @api_blueprint.route('/company/<int:company_id>/employees')
 def company_employees(company_id):
     """Return list of employees give a company's index"""
-    company = company_service.get_company(company_id)
-    if not company:
-        return not_found_response()
+    try:
+        company = company_service.get_company(company_id)
+        if not company:
+            return not_found_response()
 
-    if not company.employees:
-        return jsonify({'message': 'This company does not have any employees'})
+        if not company.employees:
+            return jsonify({'message': 'This company does not have any employees'})
 
-    return jsonify([employee.to_dict() for employee in company.employees])
+        return jsonify([employee.to_dict() for employee in company.employees])
+    except Exception as e:
+        return exception_response()
 
 
 @api_blueprint.route('/company/<int:company_id>')
 def get_company(company_id):
     """Return details given a company's index"""
-    company = company_service.get_company(company_id)
-    if not company:
-        return not_found_response()
-
-    return jsonify(company.to_dict())
+    try:
+        company = company_service.get_company(company_id)
+        if not company:
+            return not_found_response()
+        return jsonify(company.to_dict())
+    except Exception as e:
+        return exception_response()
 
 
 def not_found_response():
@@ -34,3 +39,11 @@ def not_found_response():
         'message': 'Company not found',
     }
     return jsonify(message), 404
+
+
+def exception_response():
+    """Return exception response"""
+    message = {
+        'message': 'We encountered an issue',
+    }
+    return jsonify(message), 500
