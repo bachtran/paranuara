@@ -1,4 +1,4 @@
-from flask import jsonify
+from flask import jsonify, current_app
 from app.api import api_blueprint
 from app.services import company as company_service
 
@@ -18,6 +18,7 @@ def company_employees(company_id):
 
         return jsonify([employee.to_dict() for employee in company.employees])
     except Exception as e:
+        current_app.logger.error(e)
         return exception_response()
 
 
@@ -30,6 +31,7 @@ def get_company(company_id):
             return not_found_response()
         return jsonify(company.to_dict())
     except Exception as e:
+        current_app.logger.error(e)
         return exception_response()
 
 

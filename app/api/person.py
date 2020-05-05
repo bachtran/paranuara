@@ -1,4 +1,4 @@
-from flask import jsonify
+from flask import jsonify, current_app
 from app.api import api_blueprint
 from app.services import person as person_service
 
@@ -34,6 +34,7 @@ def person_common_friends(person_id_1, person_id_2):
         }
         return jsonify(result)
     except Exception as e:
+        current_app.logger.error(e)
         return exception_response()
 
 
@@ -54,6 +55,7 @@ def person_details(person_id):
 
         return jsonify(result)
     except Exception as e:
+        current_app.logger.error(e)
         return exception_response()
 
 
