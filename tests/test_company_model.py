@@ -7,7 +7,7 @@ class CompanyModelTestCase(unittest.TestCase):
         company = Company(index=0, name='Test')
         company_dict = company.to_dict()
         expected = {'index': 0, 'name': 'Test'}
-        self.assertEqual(company_dict, expected)
+        self.assertEqual(expected, company_dict)
 
 
 if __name__ == '__main__':

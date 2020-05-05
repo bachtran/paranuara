@@ -36,7 +36,7 @@ class PersonTestCase(unittest.TestCase):
         person2.befriend(friend1)
 
         common_friends = person_service.get_common_friends(person1, person2)
-        self.assertEqual(len(common_friends), 1)
+        self.assertEqual(1, len(common_friends))
         self.assertIn(friend1, common_friends)
         self.assertNotIn(friend2, common_friends)
 

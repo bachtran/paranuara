@@ -7,7 +7,7 @@ class MyTestCase(unittest.TestCase):
         person = Person(index=0, name='Test', age=30, has_died=False, eye_color='black', phone='000', address='test')
         friend = Person(index=1, name='Friend', age=30, has_died=False, eye_color='blue', phone='000', address='test')
         person.befriend(friend)
-        self.assertEqual(len(person.friends), 1)
+        self.assertEqual(1, len(person.friends))
         self.assertEqual(person.friends[0].to_dict(), friend.to_dict())
 
     def test_unfriend(self):
@@ -15,7 +15,7 @@ class MyTestCase(unittest.TestCase):
         friend = Person(index=1, name='Friend', age=30, has_died=False, eye_color='blue', phone='000', address='test')
         person.befriend(friend)
         person.unfriend(friend)
-        self.assertEqual(len(person.friends), 0)
+        self.assertEqual(0, len(person.friends))
 
     def test_to_dict(self):
         person = Person(index=0, name='Test', age=30, has_died=False, eye_color='black', phone='000', address='test')
@@ -28,7 +28,7 @@ class MyTestCase(unittest.TestCase):
                     'phone': '000',
                     'address': 'test',
                     }
-        self.assertEqual(person_dict, expected)
+        self.assertEqual(expected, person_dict)
 
 
 if __name__ == '__main__':
